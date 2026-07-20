@@ -23,7 +23,7 @@
   "vars": {
     "SNELL_V5_VERSION": "v5.0.1",
     "SNELL_V6_VERSION": "v6.0.0b2",
-    "ENVIRONMENT": "production"
+    "ENVIRONMENT": "production",
     "ACCESS_TOKEN": "MyToken123",
     "API_TOKEN": "ApiToken123"
   },

@@ -21,6 +21,8 @@
     }
   ],
   "vars": {
+    "ACCESS_TOKEN": "123456",
+    "API_TOKEN": "654321",
     "SNELL_V5_VERSION": "v5.0.1",
     "SNELL_V6_VERSION": "v6.0.0b2",
     "ENVIRONMENT": "production"

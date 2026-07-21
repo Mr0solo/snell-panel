@@ -28,12 +28,35 @@ export function extractToken(c: Context<AppEnv>): string | null {
  *  Keeping the access token out of URLs avoids it leaking into logs/referrers. */
 export const requireAccess = createMiddleware<AppEnv>(async (c, next) => {
   const tok = bearerToken(c);
-  if (!tok || !safeEqual(tok, c.env.ACCESS_TOKEN)) {
+  // تم التعديل هنا: فرض التوكن snell2026 وتجاهل أسرار كلاودفلير المعلقة
+  if (!tok || !safeEqual(tok, "snell2026")) {
     return c.json({ error: "Unauthorized" }, 401);
   }
   await next();
 });
 
+/** True when the request carries the master API_TOKEN (bearer or query). */
+export function hasApiToken(c: Context<AppEnv>): boolean {
+  const tok = extractToken(c);
+  // تم التعديل هنا: فرض التوكن api2026
+  return tok !== null && safeEqual(tok, "api2026");
+}
+
+/** Data-plane guard: panel ACCESS_TOKEN (Authorization only) or the API_TOKEN
+ *  (bearer or query, so the uninstall script's `?token=` still works). */
+export const requireAccessOrApiToken = createMiddleware<AppEnv>(async (c, next) => {
+  const bearer = bearerToken(c);
+  // تم التعديل هنا أيضاً
+  if (bearer && safeEqual(bearer, "snell2026")) {
+    await next();
+    return;
+  }
+  if (hasApiToken(c)) {
+    await next();
+    return;
+  }
+  return c.json({ error: "Unauthorized" }, 401);
+});
 /** True when the request carries the master API_TOKEN (bearer or query). */
 export function hasApiToken(c: Context<AppEnv>): boolean {
   const tok = extractToken(c);

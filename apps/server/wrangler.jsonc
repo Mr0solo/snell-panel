@@ -16,17 +16,16 @@
     {
       "binding": "DB",
       "database_name": "snell-panel",
-      "database_id": "bb4aaa76-2b83-425f-b9a9-e7063d741984",
+      "database_id": "75969269-36eb-4f0d-82cc-e0c839fc8bcb",
       "migrations_dir": "drizzle"
     }
   ],
-  "vars": {
-    "ACCESS_TOKEN": "123456",
-    "API_TOKEN": "654321",
+    "vars": {
     "SNELL_V5_VERSION": "v5.0.1",
     "SNELL_V6_VERSION": "v6.0.0b2",
     "ENVIRONMENT": "production"
   },
+
   // Bundle the installer script as a text module so GET /install.sh can serve it.
   "rules": [{ "type": "Text", "globs": ["**/*.sh"], "fallthrough": true }]
 }

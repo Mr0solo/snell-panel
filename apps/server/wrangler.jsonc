@@ -20,7 +20,9 @@
       "migrations_dir": "drizzle"
     }
   ],
-    "vars": {
+  "vars": {
+    "ACCESS_TOKEN": "admin123",
+    "API_TOKEN": "api123",
     "SNELL_V5_VERSION": "v5.0.1",
     "SNELL_V6_VERSION": "v6.0.0b2",
     "ENVIRONMENT": "production"
